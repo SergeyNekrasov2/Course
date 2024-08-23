@@ -1,5 +1,6 @@
-import datetime
+def main_list_func():
+    pass
 
 
-def get_period():
+def events_list():
     pass
