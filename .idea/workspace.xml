@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="00c475de-f9bd-4361-818e-ff8e70d586a8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/operations.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/operations.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/екн.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/екн.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +99,23 @@
       <option name="project" value="LOCAL" />
       <updated>1724412332019</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="'functions for events_page is ready'">
+      <option name="closed" value="true" />
+      <created>1724829291853</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724829291853</updated>
+    </task>
+    <task id="LOCAL-00004" summary="'all functions are ready'">
+      <option name="closed" value="true" />
+      <created>1724878892655</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724878892655</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -121,6 +135,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="'create course_work'" />
     <MESSAGE value="'functions for main_page is ready'" />
-    <option name="LAST_COMMIT_MESSAGE" value="'functions for main_page is ready'" />
+    <MESSAGE value="'functions for events_page is ready'" />
+    <MESSAGE value="'all functions are ready'" />
+    <option name="LAST_COMMIT_MESSAGE" value="'all functions are ready'" />
   </component>
 </project>
