@@ -3,6 +3,9 @@ import pandas as pd
 import requests
 from dotenv import load_dotenv
 import os
+import json
+from urllib.request import urlopen
+import certifi
 
 load_dotenv()
 
@@ -17,10 +20,9 @@ def xlsx_converting(path):
         return ["Path is not correct"]
 
 
-def get_greeting():
+def get_greeting(user_date):
     """Function for identify part of day"""
-    current_datetime = str(datetime.now())
-    hour_of_day = int(current_datetime[11:13])
+    hour_of_day = int(str(user_date[11:13]))
     greeting = ""
     if 4 <= hour_of_day <= 10:
         greeting = "Доброе утро"
@@ -69,14 +71,16 @@ def get_currencies_info(currencies_list):
     return currency_info
 
 
-def get_stocks(stocks_list, date):
+def get_stocks(stocks_list):
     """Function for getting stocks information"""
     stocks_prices = []
     api_key = os.getenv("STOCKS_API_KEY")
     for stock in stocks_list:
-        url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock}&interval=5min&apikey={api_key}'
-        r = requests.get(url).json()
-        stock_price = r["Time Series (Daily)"][date]["1. open"]
+        url = f"https://financialmodelingprep.com/api/v3/profile/{stock}?apikey={api_key}"
+        response = urlopen(url, cafile=certifi.where())
+        data = response.read().decode("utf-8")
+        stock_info = json.loads(data)
+        stock_price = stock_info[0]['price']
         stocks_prices.append({
             "stock": f"{stock}",
             "price": f"{stock_price}"
@@ -85,9 +89,9 @@ def get_stocks(stocks_list, date):
 
 
 # functions for events_page
-def time_reach_identify(date_current, reach="M"):
+def time_reach_identify(date_current, reach):
     """Function for identify first coverage day"""
-    cur_date = datetime.strptime(date_current, "%d.%m.%Y %H:%M:%S")
+    cur_date = datetime.strptime(date_current, "%Y-%m-%d %H:%M:%S")
     first_date = None
     if reach == "W":
         days_reach = cur_date.weekday()
@@ -102,15 +106,10 @@ def time_reach_identify(date_current, reach="M"):
     return first_date
 
 
-def operations_exp_sum(file, time_reach):
+def operations_exp_sum(file, end_date, start_date):
     """Filter function for transactions by date reach"""
-    reach_time = pd.to_datetime(time_reach)
-    list_index = []
-    for i, column in file.iterrows():
-        x = pd.to_datetime(column["Дата платежа"], dayfirst=True, )
-        if x > reach_time:
-            list_index.append(i)
-    file_filtered = file[file.index.isin(list_index)]
+    file["Дата операции"] = pd.to_datetime(file["Дата операции"])
+    file_filtered = file[(file['Дата операции'] >= start_date) & (file['Дата операции'] <= end_date)]
     exp_sum = sum(file_filtered["Сумма платежа"])
     category_list = file_filtered["Категория"].unique()
     category_dict = {}
