@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "module3-course-work"
+version = "0.1.0"
+description = ""
+authors = ["rafaelmanasyan <workpageraf@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+line_length = 119
+
+[tool.black]
+line_length = 119
+
+[tool.mypy]
+disallow_untyped_defs = true
