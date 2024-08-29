@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00c475de-f9bd-4361-818e-ff8e70d586a8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,23 +115,7 @@
       <option name="project" value="LOCAL" />
       <updated>1724878892655</updated>
     </task>
-    <task id="LOCAL-00005" summary="'all functions are ready'">
-      <option name="closed" value="true" />
-      <created>1724880593082</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1724880593082</updated>
-    </task>
-    <task id="LOCAL-00006" summary="'add README.md-file'">
-      <option name="closed" value="true" />
-      <created>1724913641533</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1724913641533</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -152,7 +137,6 @@
     <MESSAGE value="'functions for main_page is ready'" />
     <MESSAGE value="'functions for events_page is ready'" />
     <MESSAGE value="'all functions are ready'" />
-    <MESSAGE value="'add README.md-file'" />
-    <option name="LAST_COMMIT_MESSAGE" value="'add README.md-file'" />
+    <option name="LAST_COMMIT_MESSAGE" value="'all functions are ready'" />
   </component>
 </project>
