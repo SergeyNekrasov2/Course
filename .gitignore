@@ -1,4 +1,4 @@
 .venv/bin
-.idea
+.idea/
 .env
 .env_template
