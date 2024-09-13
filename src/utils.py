@@ -14,8 +14,9 @@ load_dotenv()
 # functions for main_page
 def xlsx_converting(path):
     """Function for converting excel-file to dataframe"""
+    PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", path)
     try:
-        py_from_xlsx = pd.read_excel(path)
+        py_from_xlsx = pd.read_excel(PATH)
         return py_from_xlsx
     except FileNotFoundError:
         return ["Path is not correct"]
@@ -118,7 +119,7 @@ def operations_exp_sum(file, end_date, start_date):
     file["Дата операции"] = pd.to_datetime(file["Дата операции"])
     file_filtered = file[
         (file["Дата операции"] >= start_date) & (file["Дата операции"] <= end_date)
-    ]
+        ]
     exp_sum = sum(file_filtered["Сумма платежа"])
     category_list = file_filtered["Категория"].unique()
     category_dict = {}
