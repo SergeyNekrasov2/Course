@@ -42,17 +42,13 @@ def get_card_info(operations_df):
     cards_list = operations_df["Номер карты"].unique()
     cards_dict = {}
     for card in cards_list:
-        card_sum = operations_df.loc[
-            operations_df["Номер карты"] == card, "Сумма платежа"
-        ].sum()
+        card_sum = operations_df.loc[operations_df["Номер карты"] == card, "Сумма платежа"].sum()
         cards_dict[f"{card}"] = {
             "last_digits": f"{card}",
             "total_spent": round(float(card_sum), 2),
             "cashback": round((float(card_sum) / 100), 2),
         }
-    highest_five_operas = operations_df.sort_values(
-        by="Сумма платежа", ascending=False
-    ).head()
+    highest_five_operas = operations_df.sort_values(by="Сумма платежа", ascending=False).head()
     highest_five_list = []
     for i, column in highest_five_operas.iterrows():
         highest_five_list.append(
@@ -74,9 +70,7 @@ def get_currencies_info(currencies_list):
     courses = response.json()
     for valute in currencies_list:
         if courses["Valute"][valute]:
-            currency_info.append(
-                {"currency": valute, "rate": courses["Valute"][valute]["Value"]}
-            )
+            currency_info.append({"currency": valute, "rate": courses["Valute"][valute]["Value"]})
     return currency_info
 
 
@@ -85,9 +79,7 @@ def get_stocks(stocks_list):
     stocks_prices = []
     api_key = os.getenv("STOCKS_API_KEY")
     for stock in stocks_list:
-        url = (
-            f"https://financialmodelingprep.com/api/v3/profile/{stock}?apikey={api_key}"
-        )
+        url = f"https://financialmodelingprep.com/api/v3/profile/{stock}?apikey={api_key}"
         response = urlopen(url, cafile=certifi.where())
         data = response.read().decode("utf-8")
         stock_info = json.loads(data)
@@ -117,9 +109,7 @@ def time_reach_identify(date_current, reach):
 def operations_exp_sum(file, end_date, start_date):
     """Filter function for transactions by date reach"""
     file["Дата операции"] = pd.to_datetime(file["Дата операции"])
-    file_filtered = file[
-        (file["Дата операции"] >= start_date) & (file["Дата операции"] <= end_date)
-        ]
+    file_filtered = file[(file["Дата операции"] >= start_date) & (file["Дата операции"] <= end_date)]
     exp_sum = sum(file_filtered["Сумма платежа"])
     category_list = file_filtered["Категория"].unique()
     category_dict = {}
@@ -128,17 +118,11 @@ def operations_exp_sum(file, end_date, start_date):
     first_seven_dict = {}
     for category in category_list:
         if category not in ["Переводы", "Наличные", "Пополнения"]:
-            category_sum = file_filtered.loc[
-                file_filtered["Категория"] == category, "Сумма платежа"
-            ].sum()
+            category_sum = file_filtered.loc[file_filtered["Категория"] == category, "Сумма платежа"].sum()
             category_dict[f"{category}"] = float(category_sum)
-            sorted_cat_dict = dict(
-                sorted(category_dict.items(), key=lambda value: value[1])
-            )
+            sorted_cat_dict = dict(sorted(category_dict.items(), key=lambda value: value[1]))
         elif category in ["Переводы", "Наличные"]:
-            category_sum = file_filtered.loc[
-                file_filtered["Категория"] == category, "Сумма платежа"
-            ].sum()
+            category_sum = file_filtered.loc[file_filtered["Категория"] == category, "Сумма платежа"].sum()
             cash_trans_dict[f"{category}"] = float(category_sum)
     count = 0
     for k, v in sorted_cat_dict.items():

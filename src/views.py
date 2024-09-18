@@ -1,9 +1,17 @@
 import json
-
-from dotenv import load_dotenv
 import os
 
-from utils import *
+from dotenv import load_dotenv
+
+from utils import (
+    get_card_info,
+    get_currencies_info,
+    get_greeting,
+    get_stocks,
+    operations_exp_sum,
+    time_reach_identify,
+    xlsx_converting,
+)
 
 load_dotenv()
 
