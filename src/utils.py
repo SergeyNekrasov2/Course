@@ -2,6 +2,7 @@ import json
 import os
 from datetime import date, datetime, timedelta
 from urllib.request import urlopen
+import logging
 
 import certifi
 import pandas as pd
@@ -11,19 +12,31 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+logger = logging.getLogger(__name__)
+file_handler = logging.FileHandler(f"logs.utils.log", "w")
+file_formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s %(asctime)s %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+logger.setLevel(logging.INFO)
+
+
 # functions for main_page
 def xlsx_converting(path):
     """Function for converting excel-file to dataframe"""
     PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", path)
+    logger.info('Попытка конвертации эксель-файла в датафрейм')
     try:
         py_from_xlsx = pd.read_excel(PATH)
+        logger.info('Успешная конвертация')
         return py_from_xlsx
     except FileNotFoundError:
+        logger.error('Некорректный путь')
         return ["Path is not correct"]
 
 
 def get_greeting(user_date):
     """Function for identify part of day"""
+    logger.info('Определение времени дня')
     hour_of_day = int(str(user_date[11:13]))
     greeting = ""
     if 4 <= hour_of_day <= 10:
@@ -39,6 +52,7 @@ def get_greeting(user_date):
 
 def get_card_info(operations_df):
     """Function for getting info about cards"""
+    logger.info('Получение информации по карте...')
     cards_list = operations_df["Номер карты"].unique()
     cards_dict = {}
     for card in cards_list:
@@ -65,13 +79,18 @@ def get_card_info(operations_df):
 
 def get_currencies_info(currencies_list):
     """Function for getting currencies information"""
-    currency_info = []
-    response = requests.get("https://www.cbr-xml-daily.ru/daily_json.js")
-    courses = response.json()
-    for valute in currencies_list:
-        if courses["Valute"][valute]:
-            currency_info.append({"currency": valute, "rate": courses["Valute"][valute]["Value"]})
-    return currency_info
+    try:
+        logger.info('Получение информации из валютного рынка')
+        currency_info = []
+        response = requests.get("https://www.cbr-xml-daily.ru/daily_json.js")
+        courses = response.json()
+        for valute in currencies_list:
+            if courses["Valute"][valute]:
+                currency_info.append({"currency": valute, "rate": courses["Valute"][valute]["Value"]})
+        return currency_info
+    except ConnectionError:
+        logger.error('Отсутствует подключение...')
+        return 'Отсутствует подключение...'
 
 
 def get_stocks(stocks_list):
@@ -91,6 +110,7 @@ def get_stocks(stocks_list):
 # functions for events_page
 def time_reach_identify(date_current, reach):
     """Function for identify first coverage day"""
+    logger.info('Определение периода времени...')
     cur_date = datetime.strptime(date_current, "%Y-%m-%d %H:%M:%S")
     first_date = None
     if reach == "W":
@@ -108,6 +128,7 @@ def time_reach_identify(date_current, reach):
 
 def operations_exp_sum(file, end_date, start_date):
     """Filter function for transactions by date reach"""
+    logger.info('Попытка фильтрации списка транзакций по времени')
     file["Дата операции"] = pd.to_datetime(file["Дата операции"])
     file_filtered = file[(file["Дата операции"] >= start_date) & (file["Дата операции"] <= end_date)]
     exp_sum = sum(file_filtered["Сумма платежа"])

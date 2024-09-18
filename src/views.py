@@ -36,6 +36,7 @@ def main_list_func(path, user_date):
 
 def events_list(user_date, date_coverage="M"):
     """Function for events-page"""
+
     date_diapason = time_reach_identify(user_date, date_coverage)
     df_file = xlsx_converting(os.path.abspath("operations.xlsx"))
     operations_info = operations_exp_sum(df_file, user_date, date_diapason)
