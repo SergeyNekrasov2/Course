@@ -65,9 +65,9 @@ def get_dict_transaction(file_path) -> list[dict]:
         raise
 
 
-if __name__ == "__main__":
-        dict_transaction = get_dict_transaction(str(ROOT_PATH) + file_path)
-        print(dict_transaction)
+# if __name__ == "__main__":
+#         dict_transaction = get_dict_transaction(str(ROOT_PATH) + file_path)
+#         print(dict_transaction)
 
 
 def get_user_setting(path):
@@ -155,9 +155,9 @@ def top_transaction(df_transactions):
     return top_transaction_list
 
 
-if __name__ == "__main__":
-    top_transaction_list = top_transaction(reader_transaction_excel(str(ROOT_PATH) + file_path))
-    print(top_transaction_list)
+# if __name__ == "__main__":
+#     top_transaction_list = top_transaction(reader_transaction_excel(str(ROOT_PATH) + file_path))
+#     print(top_transaction_list)
 
 
 def get_expenses_cards(df_transactions) -> list[dict]:
@@ -184,9 +184,9 @@ def get_expenses_cards(df_transactions) -> list[dict]:
     return expenses_cards
 
 
-if __name__ == "__main__":
-    result_expenses_cards = get_expenses_cards(reader_transaction_excel(str(ROOT_PATH) + file_path))
-    print(result_expenses_cards)
+# if __name__ == "__main__":
+#     result_expenses_cards = get_expenses_cards(reader_transaction_excel(str(ROOT_PATH) + file_path))
+#     print(result_expenses_cards)
 
 
 def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFrame:
@@ -206,11 +206,11 @@ def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFra
     return transaction_currency
 
 
-if __name__ == "__main__":
-    transaction_currency = transaction_currency(
-        reader_transaction_excel((str(ROOT_PATH) + file_path)), "29.07.2019 22:06:27"
-    )
-    print(transaction_currency)
+# if __name__ == "__main__":
+#     transaction_currency = transaction_currency(
+#         reader_transaction_excel((str(ROOT_PATH) + file_path)), "29.07.2019 22:06:27"
+#     )
+#     print(transaction_currency)
 
 
 def get_greeting():
