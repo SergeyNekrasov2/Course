@@ -5,11 +5,9 @@ import logging
 import pandas as pd
 from dateutil.relativedelta import relativedelta
 
-from utils import xlsx_converting
-
 
 logger = logging.getLogger(__name__)
-file_handler = logging.FileHandler(f"logs.reports.log", "w")
+file_handler = logging.FileHandler(f"data.reports.log", "w")
 file_formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s %(asctime)s %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -27,8 +25,3 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: Option
     ]
     filtered_trans_by_cat = filtered_trans_by_date[filtered_trans_by_date["Категория"] == category]
     return filtered_trans_by_cat
-
-
-df = xlsx_converting("operations.xlsx")
-
-print(spending_by_category(df, "Супермаркеты", "30.05.2020 14:10:18"))
