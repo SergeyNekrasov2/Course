@@ -1,12 +1,7 @@
 import json
 import logging
 from pathlib import Path
-from src.utils import (get_currency_rates,
-                       get_expenses_cards,
-                       top_transaction,
-                       get_greeting,
-                       get_stock_price
-                       )
+from src.utils import (get_currency_rates,get_expenses_cards,top_transaction,get_greeting,get_stock_price)
 from src.views import main
 from src.read_excel import read_excel
 

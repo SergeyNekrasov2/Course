@@ -1,6 +1,5 @@
 import datetime as dt
 import json
-import pandas
 import logging
 import datetime
 from pathlib import Path
