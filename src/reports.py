@@ -8,12 +8,12 @@ from src.utils import get_data, reader_transaction_excel
 from functools import wraps
 from typing import Any, Callable
 
-logger = logging.getLogger("logs")
-logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("..\\logs\\reports.log", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
-file_handler.setFormatter(file_formatter)
-logger.addHandler(file_handler)
+# logger = logging.getLogger("logs")
+# logger.setLevel(logging.INFO)
+# file_handler = logging.FileHandler("..\\logs\\reports.log", encoding="utf-8")
+# file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
+# file_handler.setFormatter(file_formatter)
+# logger.addHandler(file_handler)
 
 
 ROOT_PATH = Path(__file__).resolve().parent.parent
@@ -58,9 +58,9 @@ def spending_by_category(df_transactions: pd.DataFrame, category: str, date: [st
     return transactions_by_category .groupby(["Категория", "Дата операции"]).sum().reset_index()
 
 
-if __name__ == "__main__":
-    result = spending_by_category(
-        reader_transaction_excel(str(ROOT_PATH) + file_path), "Аптеки", "26.07.2019 20:58:55"
-    )
-    print(result)
+# if __name__ == "__main__":
+#     result = spending_by_category(
+#         reader_transaction_excel(str(ROOT_PATH) + file_path), "Аптеки", "26.07.2019 20:58:55"
+#     )
+#     print(result)
     # выводит на экран результат работы функции, в случае успеха - None.

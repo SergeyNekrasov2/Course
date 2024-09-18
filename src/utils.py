@@ -123,12 +123,12 @@ def get_stock_price(stocks):
     return stock_price
 
 
-if __name__ == "__main__":
-    print(get_currency_rates(["USD", "EUR"]))
-
-    stock = "AAPL"
-    stock_price = get_stock_price(["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"])
-    API_KEY_STOCK = '1LEAU1JX6KFZ65TN'
+# if __name__ == "__main__":
+#     print(get_currency_rates(["USD", "EUR"]))
+#
+#     stock = "AAPL"
+#     stock_price = get_stock_price(["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"])
+#     API_KEY_STOCK = '1LEAU1JX6KFZ65TN'
 
 
 def top_transaction(df_transactions):

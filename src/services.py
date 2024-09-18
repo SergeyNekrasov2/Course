@@ -4,12 +4,12 @@ import re
 from src.utils import get_dict_transaction
 
 
-logger = logging.getLogger("logs")
-logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("..\\logs\\services.log", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
-file_handler.setFormatter(file_formatter)
-logger.addHandler(file_handler)
+# logger = logging.getLogger("logs")
+# logger.setLevel(logging.INFO)
+# file_handler = logging.FileHandler("..\\logs\\services.log", encoding="utf-8")
+# file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
+# file_handler.setFormatter(file_formatter)
+# logger.addHandler(file_handler)
 
 
 def get_transactions_fizlicam(dict_transaction: list[dict], pattern):
@@ -29,8 +29,8 @@ def get_transactions_fizlicam(dict_transaction: list[dict], pattern):
         return "[]"
 
 
-if __name__ == "__main__":
-    list_transactions_fl_json = get_transactions_fizlicam(
-        get_dict_transaction("..\\data\\operations.xlsx"), pattern=r"\b[А-Я][а-я]+\s[А-Я]\."
-    )
-    print(list_transactions_fl_json)
+# if __name__ == "__main__":
+#     list_transactions_fl_json = get_transactions_fizlicam(
+#         get_dict_transaction("..\\data\\operations.xlsx"), pattern=r"\b[А-Я][а-я]+\s[А-Я]\."
+#     )
+#     print(list_transactions_fl_json)

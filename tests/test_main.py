@@ -1,3 +1,4 @@
+import pytest
 from src.main import main
 from unittest.mock import Mock, patch
 from datetime import datetime
@@ -14,8 +15,8 @@ def test_mine_main(mock_read_excel):
         print(f"Ошибка при преобразовании даты: {e}")
 
 
-if __name__ == "__main__":
-    test_mine_main()
+# if __name__ == "__main__":
+#     test_mine_main()
 
     mock_get.return_value.json.return_value = {
         "greeting": "Добрый день",

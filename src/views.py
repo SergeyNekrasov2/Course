@@ -14,12 +14,12 @@ from src.utils import (
 ROOT_PATH = Path(__file__).resolve().parent.parent
 
 
-logger = logging.getLogger("logs")
-logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("..\\logs\\views.log", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
-file_handler.setFormatter(file_formatter)
-logger.addHandler(file_handler)
+# logger = logging.getLogger("logs")
+# logger.setLevel(logging.INFO)
+# file_handler = logging.FileHandler("..\\logs\\views.log", encoding="utf-8")
+# file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
+# file_handler.setFormatter(file_formatter)
+# logger.addHandler(file_handler)
 
 
 def main(df_transactions, date, user_currencies, user_stocks):
