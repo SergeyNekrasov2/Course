@@ -1,6 +1,5 @@
 import json
 import os
-from datetime import date, datetime, timedelta
 from urllib.request import urlopen
 import logging
 
@@ -13,7 +12,7 @@ load_dotenv()
 
 
 logger = logging.getLogger(__name__)
-file_handler = logging.FileHandler(f"data.utils.log", "w")
+file_handler = logging.FileHandler(filename='../data/utils.log', mode='w')
 file_formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s %(asctime)s %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -36,7 +35,7 @@ def xlsx_converting(path):
 
 def get_greeting(user_date):
     """Function for identify part of day"""
-    logger.info('Определение времени дня')
+    # logger.info('Определение времени дня')
     hour_of_day = int(str(user_date[11:13]))
     greeting = ""
     if 4 <= hour_of_day <= 10:
@@ -105,58 +104,3 @@ def get_stocks(stocks_list):
         stock_price = stock_info[0]["price"]
         stocks_prices.append({"stock": f"{stock}", "price": f"{stock_price}"})
     return stocks_prices
-
-
-# functions for events_page
-def time_reach_identify(date_current, reach):
-    """Function for identify first coverage day"""
-    logger.info('Определение периода времени...')
-    cur_date = datetime.strptime(date_current, "%Y-%m-%d %H:%M:%S")
-    first_date = None
-    if reach == "W":
-        days_reach = cur_date.weekday()
-        first_date = cur_date - timedelta(days=days_reach)
-    elif reach == "M":
-        days_reach = cur_date.day
-        first_date = cur_date - timedelta(days=days_reach - 1)
-    elif reach == "Y":
-        first_date = date(cur_date.year, 1, 1)
-    elif reach == "ALL":
-        first_date = None
-    return first_date
-
-
-def operations_exp_sum(file, end_date, start_date):
-    """Filter function for transactions by date reach"""
-    logger.info('Попытка фильтрации списка транзакций по времени')
-    file["Дата операции"] = pd.to_datetime(file["Дата операции"])
-    file_filtered = file[(file["Дата операции"] >= start_date) & (file["Дата операции"] <= end_date)]
-    exp_sum = sum(file_filtered["Сумма платежа"])
-    category_list = file_filtered["Категория"].unique()
-    category_dict = {}
-    cash_trans_dict = {}
-    sorted_cat_dict = {}
-    first_seven_dict = {}
-    for category in category_list:
-        if category not in ["Переводы", "Наличные", "Пополнения"]:
-            category_sum = file_filtered.loc[file_filtered["Категория"] == category, "Сумма платежа"].sum()
-            category_dict[f"{category}"] = float(category_sum)
-            sorted_cat_dict = dict(sorted(category_dict.items(), key=lambda value: value[1]))
-        elif category in ["Переводы", "Наличные"]:
-            category_sum = file_filtered.loc[file_filtered["Категория"] == category, "Сумма платежа"].sum()
-            cash_trans_dict[f"{category}"] = float(category_sum)
-    count = 0
-    for k, v in sorted_cat_dict.items():
-        count += 1
-        others_sum = 0
-        if count < 8:
-            first_seven_dict[f"{k}"] = v
-        elif count >= 8:
-            others_sum += v
-            first_seven_dict["Остальное"] = others_sum
-    response_dict = {
-        "total_amount": exp_sum,
-        "main": [first_seven_dict],
-        "transfers_and_cash": [cash_trans_dict],
-    }
-    return response_dict
