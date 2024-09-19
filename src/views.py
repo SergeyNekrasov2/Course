@@ -21,16 +21,16 @@ def main_list_func(path, user_date):
     greeting = get_greeting(user_date)
     py_file = xlsx_converting(path)
     card_info = get_card_info(py_file)
-    with open(os.path.abspath("user_settings.json")) as user_setts:
+    with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), "user_settings.json")) as user_setts:
         setts = json.load(user_setts)
     currencies_info = get_currencies_info(setts["user_currencies"])
     stocks_info = get_stocks(setts["user_stocks"])
-    response = {
+    response = json.dumps({
         "greeting": greeting,
         "cards": card_info,
         "currency_rates": currencies_info,
         "stock_prices": stocks_info,
-    }
+    })
     return response
 
 
@@ -50,3 +50,6 @@ def events_list(user_date, date_coverage="M"):
         "stock_prices": stocks_info,
     }
     return response
+
+
+print(main_list_func('operations.xlsx', '2021-12-31 16:42:04'))
