@@ -1,4 +1,4 @@
-import pytest
+import requests
 from src.main import main
 from unittest.mock import Mock, patch
 from datetime import datetime

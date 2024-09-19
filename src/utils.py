@@ -18,7 +18,7 @@ API_KEY_CUR = os.getenv("API_KEY_CUR")
 SP_500_API_KEY = os.getenv("SP_500_API_KEY")
 
 logger = logging.getLogger("utils.log")
-file_handler = logging.FileHandler("utils.log", "w")
+file_handler = logging.FileHandler("../logs/utils.log", "w")
 file_formatter = logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -156,8 +156,8 @@ def top_transaction(df_transactions):
 
 
 # if __name__ == "__main__":
-#     top_transaction_list = top_transaction(reader_transaction_excel(str(ROOT_PATH) + file_path))
-#     print(top_transaction_list)
+    # top_transaction_list = top_transaction(reader_transaction_excel(str(ROOT_PATH) + file_path))
+    # print(top_transaction_list)
 
 
 def get_expenses_cards(df_transactions) -> list[dict]:
@@ -214,7 +214,7 @@ def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFra
 
 
 def get_greeting():
-    """Функция - приветствие"""
+    """Функция - приветствия"""
     hour = dt.datetime.now().hour
     if 4 <= hour < 12:
         return "Доброе утро"

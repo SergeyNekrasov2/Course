@@ -8,12 +8,12 @@ from src.read_excel import read_excel
 
 ROOT_PATH = Path(__file__).resolve().parent.parent
 
-# logger = logging.getLogger("utils.log")
-# file_handler = logging.FileHandler("main.log", "w")
-# file_formatter = logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
-# file_handler.setFormatter(file_formatter)
-# logger.addHandler(file_handler)
-# logger.setLevel(logging.INFO)
+logger = logging.getLogger("utils.log")
+file_handler = logging.FileHandler("../logs/main.log", "w")
+file_formatter = logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+logger.setLevel(logging.INFO)
 
 
 def mains(date: str, file_path: str, stocks: list, currency: list):
