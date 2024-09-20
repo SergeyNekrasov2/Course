@@ -29,7 +29,7 @@ def main_list_func(path, user_date):
         "currency_rates": currencies_info,
         "stock_prices": stocks_info,
     })
-    return response
+    return json.dumps(response, ensure_ascii=False)
 
 
 print(main_list_func('operations.xlsx', '2021-12-31 16:42:04'))
