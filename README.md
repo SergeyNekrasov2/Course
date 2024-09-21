@@ -2,8 +2,8 @@
 ## Description
 Project was created to display basic information about user's bank transactions such as
 number of cards, sum of expenses, stock's market and currencies exchange rate
-## Using
-Install requirements:
+## Использование:
+Установите зависимости:
 ```chatinput
 pip install -r requirements.txt
 ```
