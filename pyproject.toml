@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "module3-course-work"
+name = "course-work"
 version = "0.1.0"
 description = ""
-authors = ["rafaelmanasyan <workpageraf@gmail.com>"]
+authors = ["Sergei <nekrasov-nekras-nekrasov@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
