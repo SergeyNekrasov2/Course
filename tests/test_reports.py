@@ -1,3 +1,5 @@
+import json
+
 import pandas as pd
 
 from src.reports import spending_by_category
@@ -9,16 +11,17 @@ def test_spending_by_category(get_operations_df):
                              'Дата платежа': ['07.04.2020'],
                              'Номер карты': ['*7197'],
                              'Статус': ['OK'],
-                             'Сумма операции': [-100.00],
+                             'Сумма операции': [-100],
                              'Валюта операции': ['RUB'],
-                             'Сумма платежа': [-100.00],
+                             'Сумма платежа': [-100],
                              'Валюта платежа': ['RUB'],
                              'Кэшбэк': [0],
                              'Категория': ['Фастфуд'],
                              'MCC': ['5814'],
                              'Описание': ['IP Yakubovskaya M. V.'],
-                             'Бонусы (включая кэшбэк)': [2.00],
-                             'Округление на инвесткопилку': [0.00],
-                             'Сумма операции с округлением': [100.00]}, index=[1])
-    expected['Дата операции'] = pd.to_datetime(expected['Дата операции'])
-    pd.testing.assert_frame_equal(actual, expected)
+                             'Бонусы (включая кэшбэк)': [2],
+                             'Округление на инвесткопилку': [0],
+                             'Сумма операции с округлением': [100]})
+    actual_df = pd.read_json(actual)
+    actual_df['MCC'] = actual_df['MCC'].astype(str)
+    pd.testing.assert_frame_equal(actual_df, expected)

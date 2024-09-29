@@ -8,17 +8,15 @@ from utils import (
     get_currencies_info,
     get_greeting,
     get_stocks,
-    xlsx_converting,
 )
 
 load_dotenv()
 
 
-def main_list_func(path, user_date):
+def main_list_func(pd_file):
     """Main list function"""
-    greeting = get_greeting(user_date)
-    py_file = xlsx_converting(path)
-    card_info = get_card_info(py_file)
+    greeting = get_greeting()
+    card_info = get_card_info(pd_file)
     with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), "user_settings.json")) as user_setts:
         setts = json.load(user_setts)
     currencies_info = get_currencies_info(setts["user_currencies"])
@@ -30,6 +28,3 @@ def main_list_func(path, user_date):
         "stock_prices": stocks_info,
     })
     return json.dumps(response, ensure_ascii=False)
-
-
-print(main_list_func('operations.xlsx', '2021-12-31 16:42:04'))
