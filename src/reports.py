@@ -2,7 +2,6 @@ import json
 from datetime import datetime
 from typing import Optional
 import logging
-
 import pandas as pd
 from dateutil.relativedelta import relativedelta
 
