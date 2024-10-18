@@ -99,7 +99,6 @@ def get_stocks(stocks_list):
     for stock in stocks_list:
         url = f"https://financialmodelingprep.com/api/v3/profile/{stock}?apikey={api_key}"
         response = urlopen(url, cafile=certifi.where())
-        # response = requests.get('https://example.com', verify=certifi.where())
         data = response.read().decode("utf-8")
         stock_info = json.loads(data)
         stock_price = stock_info[0].get("price")
