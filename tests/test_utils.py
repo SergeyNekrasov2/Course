@@ -1,10 +1,13 @@
 import json
 from unittest.mock import patch, MagicMock
+
+import certifi
+
 from src.utils import get_greeting, get_currencies_info, get_stocks, get_card_info
 
 
 @patch('datetime.datetime')
-def test_get_greeting(mock_date):
+def test_get_greeting():
     mock_date = MagicMock
     mock_date.return_value = '2021-12-31 16:42:04'
     assert get_greeting() == 'Добрый день'
