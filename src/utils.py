@@ -1,4 +1,6 @@
 import json
+import requests
+import certifi
 import os
 from urllib.request import urlopen
 import logging
@@ -101,4 +103,5 @@ def get_stocks(stocks_list):
         stock_info = json.loads(data)
         stock_price = stock_info[0].get("price")
         stocks_prices.append({"stock": f"{stock}", "price": f"{stock_price}"})
+
     return stocks_prices
